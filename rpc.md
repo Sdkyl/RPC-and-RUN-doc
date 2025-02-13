@@ -117,7 +117,7 @@ Used to return a block based on hash & page.
 curl http://127.0.0.1:10001/ -s -X POST -H "Content-Type: application/json" --data "{\"jsonrpc\":\"2.0\",\"method\":\"xdag_getBlockByHash\",\"params\":[\"AccountAddress\",\"Page\"],\"id\":1}"
 
 ## example 1: 
-curl http://127.0.0.1:10001/ -s -X POST -H "Content-Type: application/json" --data "{\"jsonrpc\":\"2.0\",\"method\":\"xdag_getBlockByHash\",\"params\":[\"JPqDSdKcQQoHoUD57ezFSKMXoJCDt3raU\",\"1\"],\"id\":1}"
+curl http://127.0.0.1:10001/ -s -X POST -H "Content-Type: application/json" --data "{\"jsonrpc\":\"2.0\",\"method\":\"xdag_getBlockByHash\",\"params\":[\"8PKBGqTAAnzSG8qbZGzDhoUihgC3cyvCH\",\"1\"],\"id\":1}"
 	
 
 # get block by blockAddress
@@ -130,11 +130,98 @@ curl http://127.0.0.1:10001/ -s -X POST -H "Content-Type: application/json" --da
 
 ```shell
 # Response of example 1:
-{"jsonrpc":"2.0","result":{"height":0,"balance":"7677.414000000","blockTime":1720015040000,"timeStamp":1761295400960,"state":"Accepted","hash":null,"address":"JPqDSdKcQQoHoUD57ezFSKMXoJCDt3raU","remark":null,"diff":null,"type":"Wallet","flags":null,"totalPage":1,"refs":null,"transactions":[{"direction":1,"hashlow":"0000000000000000481baa9925612a67c1da7111a20a10befc477bbd9a5f8c72","address":"coxfmr17R/y+EAqiEXHawWcqYSWZqhtI","amount":"7677.414000000","time":1739414189746,"remark":""}]},"id":"1"}
+{
+    "jsonrpc": "2.0",
+    "result": {
+        "height": 0,
+        "balance": "10.000000000",
+        "blockTime": 1720015040000,
+        "timeStamp": 1761295400960,
+        "state": "Accepted",
+        "hash": null,
+        "address": "8PKBGqTAAnzSG8qbZGzDhoUihgC3cyvCH",
+        "remark": null,
+        "diff": null,
+        "type": "Wallet",
+        "flags": null,
+        "totalPage": 1,
+        "refs": null,
+        "transactions": [
+            {
+                "direction": 0,
+                "hashlow": "0000000000000000481baa9925612a67c1da7111a20a10befc477bbd9a5f8c72",
+                "address": "coxfmr17R/y+EAqiEXHawWcqYSWZqhtI",
+                "amount": "10.000000000",
+                "time": 1739414189746,
+                "remark": ""
+            }
+        ]
+    },
+    "id": "1"
+}
 
 
 # Response of example 2:
-{"jsonrpc":"2.0","result":{"height":3145037,"balance":"64.200000000","blockTime":1739376191999,"timeStamp":1781121220                 607,"state":"Main","hash":"e22eb2ef6ebce7b2caa39e1e618a78e3e6633a13957b35b0825c0029bbde3650","address":"UDbeuykAXIKwN                 XuVEzpj5uN4imEenqPK","remark":"XdagJ_test02_179","diff":"0xcdf6e16f95eec0a915eb634d5ee","type":"Main","flags":"3f","t                 otalPage":1,"refs":[{"direction":2,"address":"UDbeuykAXIKwNXuVEzpj5uN4imEenqPK","hashlow":"0000000000000000caa39e1e61                 8a78e3e6633a13957b35b0825c0029bbde3650","amount":"0.200000000"},{"direction":1,"address":"gOyccH9eJhVqn7TfOAJADuuEd13                 IL6j5","hashlow":"0000000000000000f9a82fc85d7784eb0e400238dfb49f6a15265e7f709cec80","amount":"0.000000000"},{"directi               on":1,"address":"9pMKSvR5mBnzdYVawcg1rklRWS42YZRh","hashlow":"0000000000000000619461362e595149ae35c8c15a8575f3199879f                 44a0a93f6","amount":"0.000000000"},{"direction":1,"address":"YMsXKKZ+fENDAq57Wyd4M3QehC85BT5j","hashlow":"00000000000                 00000633e05392f841e743378275b7bae0243437c7ea62817cb60","amount":"0.000000000"},{"direction":1,"address":"yCLrsDkihpCh                 3fPtbx7By801w2XyZ4h7","hashlow":"00000000000000007b8867f265c335cdcbc11e6fedf3dda190862239b0eb22c8","amount":"0.000000                 000"}],"transactions":[{"direction":2,"hashlow":"0000000000000000caa39e1e618a78e3e6633a13957b35b0825c0029bbde3650","a                 ddress":"UDbeuykAXIKwNXuVEzpj5uN4imEenqPK","amount":"64.200000000","time":1739376191999,"remark":"XdagJ_test02_179"}]
+{
+    "jsonrpc": "2.0",
+    "result": {
+        "height": 3145037,
+        "balance": "0.000000000",
+        "blockTime": 1739376191999,
+        "timeStamp": 1781121220607,
+        "state": "Main",
+        "hash": "e22eb2ef6ebce7b2caa39e1e618a78e3e6633a13957b35b0825c0029bbde3650",
+        "address": "UDbeuykAXIKwNXuVEzpj5uN4imEenqPK",
+        "remark": "XdagJ_test02_179",
+        "diff": "0xcdf6e16f95eec0a915eb634d5ee",
+        "type": "Main",
+        "flags": "3f",
+        "totalPage": 1,
+        "refs": [
+            {
+                "direction": 2,
+                "address": "UDbeuykAXIKwNXuVEzpj5uN4imEenqPK",
+                "hashlow": "0000000000000000caa39e1e618a78e3e6633a13957b35b0825c0029bbde3650",
+                "amount": "0.200000000"
+            },
+            {
+                "direction": 1,
+                "address": "gOyccH9eJhVqn7TfOAJADuuEd13IL6j5",
+                "hashlow": "0000000000000000f9a82fc85d7784eb0e400238dfb49f6a15265e7f709cec80",
+                "amount": "0.000000000"
+            },
+            {
+                "direction": 1,
+                "address": "9pMKSvR5mBnzdYVawcg1rklRWS42YZRh",
+                "hashlow": "0000000000000000619461362e595149ae35c8c15a8575f3199879f44a0a93f6",
+                "amount": "0.000000000"
+            },
+            {
+                "direction": 1,
+                "address": "YMsXKKZ+fENDAq57Wyd4M3QehC85BT5j",
+                "hashlow": "0000000000000000633e05392f841e743378275b7bae0243437c7ea62817cb60",
+                "amount": "0.000000000"
+            },
+            {
+                "direction": 1,
+                "address": "yCLrsDkihpCh3fPtbx7By801w2XyZ4h7",
+                "hashlow": "00000000000000007b8867f265c335cdcbc11e6fedf3dda190862239b0eb22c8",
+                "amount": "0.000000000"
+            }
+        ],
+        "transactions": [
+            {
+                "direction": 2,
+                "hashlow": "0000000000000000caa39e1e618a78e3e6633a13957b35b0825c0029bbde3650",
+                "address": "UDbeuykAXIKwNXuVEzpj5uN4imEenqPK",
+                "amount": "64.200000000",
+                "time": 1739376191999,
+                "remark": "XdagJ_test02_179"
+            }
+        ]
+    },
+    "id": "1"
+}
 ```
 
 
@@ -186,10 +273,10 @@ Used to return a block based on hash & time range & page size.
 **Req**
 
 ```shell
-curl http://127.0.0.1:10001/ -s -X POST -H "Content-Type: application/json" --data "{\"jsonrpc\":\"2.0\",\"method\":\"xdag_getBlockByHash\",\"params\":[\"4mvr3DNkpWY9ikpGy4maaMSQqUmXjR2hp\",\"1\",\"1691675158000\",\"1691675168999\",\"3\"],\"id\":1}"
+curl http://127.0.0.1:10001/ -s -X POST -H "Content-Type: application/json" --data "{\"jsonrpc\":\"2.0\",\"method\":\"xdag_getBlockByHash\",\"params\":[\"BlockHash\",\"Page\",\"StartTimestamp\",\"EndTimestamp\",\"PageSize\"],\"id\":1}"
 
 # example:
-curl http://127.0.0.1:10001/ -s -X POST -H "Content-Type: application/json" --data "{\"jsonrpc\":\"2.0\",\"method\":\"xdag_getBlockByHash\",\"params\":[\"BlockHash\",\"Page\",\"StartTimestamp\",\"EndTimestamp\",\"PageSize\"],\"id\":1}"
+curl http://127.0.0.1:10001/ -s -X POST -H "Content-Type: application/json" --data "{\"jsonrpc\":\"2.0\",\"method\":\"xdag_getBlockByHash\",\"params\":[\"4mvr3DNkpWY9ikpGy4maaMSQqUmXjR2hp\",\"1\",\"1691675158000\",\"1691675168999\",\"3\"],\"id\":1}"
 ```
 
 
@@ -201,17 +288,76 @@ Used to return a block based on block number & page
 **Req**
 
 ```shell
-curl http://127.0.0.1:10001/ -s -X POST -H "Content-Type: application/json" --data "{\"jsonrpc\":\"2.0\",\"method\":\"xdag_getBlockByNumber\",\"params\":[\"3145037\",\"1\"],\"id\":1}"
+curl http://127.0.0.1:10001/ -s -X POST -H "Content-Type: application/json" --data "{\"jsonrpc\":\"2.0\",\"method\":\"xdag_getBlockByNumber\",\"params\":[\"BlockHeight\",\"Page\"],\"id\":1}"
 
 # example:
-curl http://127.0.0.1:10001/ -s -X POST -H "Content-Type: application/json" --data "{\"jsonrpc\":\"2.0\",\"method\":\"xdag_getBlockByNumber\",\"params\":[\"BlockHeight\",\"Page\"],\"id\":1}"
+curl http://127.0.0.1:10001/ -s -X POST -H "Content-Type: application/json" --data "{\"jsonrpc\":\"2.0\",\"method\":\"xdag_getBlockByNumber\",\"params\":[\"3145037\",\"1\"],\"id\":1}"
 ```
 
 **Resp**
 
 ```shell
 # Response of example:
-{"jsonrpc":"2.0","result":{"height":3145037,"balance":"0.000000000","blockTime":1739376191999,"timeStamp":1781121220607,"state":"Main","hash":"e22eb2ef6ebce7b2caa39e1e618a78e3e6633a13957b35b0825c0029bbde3650","address":"UDbeuykAXIKwNXuVEzpj5uN4imEenqPK","remark":"XdagJ_test02_179","diff":"0xcdf6e16f95eec0a915eb634d5ee","type":"Main","flags":"3f","totalPage":1,"refs":[{"direction":2,"address":"UDbeuykAXIKwNXuVEzpj5uN4imEenqPK","hashlow":"0000000000000000caa39e1e618a78e3e6633a13957b35b0825c0029bbde3650","amount":"0.200000000"},{"direction":1,"address":"gOyccH9eJhVqn7TfOAJADuuEd13IL6j5","hashlow":"0000000000000000f9a82fc85d7784eb0e400238dfb49f6a15265e7f709cec80","amount":"0.000000000"},{"direction":1,"address":"9pMKSvR5mBnzdYVawcg1rklRWS42YZRh","hashlow":"0000000000000000619461362e595149ae35c8c15a8575f3199879f44a0a93f6","amount":"0.000000000"},{"direction":1,"address":"YMsXKKZ+fENDAq57Wyd4M3QehC85BT5j","hashlow":"0000000000000000633e05392f841e743378275b7bae0243437c7ea62817cb60","amount":"0.000000000"},{"direction":1,"address":"yCLrsDkihpCh3fPtbx7By801w2XyZ4h7","hashlow":"00000000000000007b8867f265c335cdcbc11e6fedf3dda190862239b0eb22c8","amount":"0.000000000"}],"transactions":[{"direction":2,"hashlow":"0000000000000000caa39e1e618a78e3e6633a13957b35b0825c0029bbde3650","address":"UDbeuykAXIKwNXuVEzpj5uN4imEenqPK","amount":"64.200000000","time":1739376191999,"remark":"XdagJ_test02_179"}]},"id":"1"}                                                            
+{
+    "jsonrpc": "2.0",
+    "result": {
+        "height": 3145037,
+        "balance": "0.000000000",
+        "blockTime": 1739376191999,
+        "timeStamp": 1781121220607,
+        "state": "Main",
+        "hash": "e22eb2ef6ebce7b2caa39e1e618a78e3e6633a13957b35b0825c0029bbde3650",
+        "address": "UDbeuykAXIKwNXuVEzpj5uN4imEenqPK",
+        "remark": "XdagJ_test02_179",
+        "diff": "0xcdf6e16f95eec0a915eb634d5ee",
+        "type": "Main",
+        "flags": "3f",
+        "totalPage": 1,
+        "refs": [
+            {
+                "direction": 2,
+                "address": "UDbeuykAXIKwNXuVEzpj5uN4imEenqPK",
+                "hashlow": "0000000000000000caa39e1e618a78e3e6633a13957b35b0825c0029bbde3650",
+                "amount": "0.200000000"
+            },
+            {
+                "direction": 1,
+                "address": "gOyccH9eJhVqn7TfOAJADuuEd13IL6j5",
+                "hashlow": "0000000000000000f9a82fc85d7784eb0e400238dfb49f6a15265e7f709cec80",
+                "amount": "0.000000000"
+            },
+            {
+                "direction": 1,
+                "address": "9pMKSvR5mBnzdYVawcg1rklRWS42YZRh",
+                "hashlow": "0000000000000000619461362e595149ae35c8c15a8575f3199879f44a0a93f6",
+                "amount": "0.000000000"
+            },
+            {
+                "direction": 1,
+                "address": "YMsXKKZ+fENDAq57Wyd4M3QehC85BT5j",
+                "hashlow": "0000000000000000633e05392f841e743378275b7bae0243437c7ea62817cb60",
+                "amount": "0.000000000"
+            },
+            {
+                "direction": 1,
+                "address": "yCLrsDkihpCh3fPtbx7By801w2XyZ4h7",
+                "hashlow": "00000000000000007b8867f265c335cdcbc11e6fedf3dda190862239b0eb22c8",
+                "amount": "0.000000000"
+            }
+        ],
+        "transactions": [
+            {
+                "direction": 2,
+                "hashlow": "0000000000000000caa39e1e618a78e3e6633a13957b35b0825c0029bbde3650",
+                "address": "UDbeuykAXIKwNXuVEzpj5uN4imEenqPK",
+                "amount": "64.200000000",
+                "time": 1739376191999,
+                "remark": "XdagJ_test02_179"
+            }
+        ]
+    },
+    "id": "1"
+}                                                           
 ```
 
 
@@ -248,7 +394,11 @@ curl http://127.0.0.1:10001/ -s -X POST -H "Content-Type: application/json" --da
 
 ```shell
 # Response of example:
-{"jsonrpc":"2.0","id":1,"result":"5"}
+{
+    "jsonrpc": "2.0",
+    "result": "3145719",
+    "id": "1"
+}
 ```
 
 ### 4. xdag_coinbase
@@ -268,7 +418,11 @@ curl http://127.0.0.1:10001/ -s -X POST -H "Content-Type: application/json" --da
 
 ```shell
 # Response of example:
-{"jsonrpc":"2.0","id":1,"result":"K5q0ews/ma110QLUzePetOdU+EwYKrud"}
+{
+    "jsonrpc": "2.0",
+    "result": "JPqDSdKcQQoHoUD57ezFSKMXoJCDt3raU",
+    "id": "1"
+}
 ```
 
 ### 5. xdag_getBalance
@@ -278,32 +432,35 @@ Used to return the balance of someone
 **Req**
 
 ```shell
-# getBalance by address
+# getBalance by accountAddress
 curl http://127.0.0.1:10001/ -s -X POST -H "Content-Type: application/json" --data "{\"jsonrpc\":\"2.0\",\"method\":\"xdag_getBalance\",\"params\":[\"AccountAddress\"],\"id\":1}"
 
 ## example 1:
 curl http://127.0.0.1:10001/ -s -X POST -H "Content-Type: application/json" --data "{\"jsonrpc\":\"2.0\",\"method\":\"xdag_getBalance\",\"params\":[\"K5q0ews/ma110QLUzePetOdU+EwYKrud\"],\"id\":1}"
 
 
-# getBalance by hash
-curl http://127.0.0.1:10001/ -s -X POST -H "Content-Type: application/json" --data "{\"jsonrpc\":\"2.0\",\"method\":\"xdag_getBalance\",\"params\":[\"BlockHash\"],\"id\":1}"
+# getBalance by blockAddress
+curl http://127.0.0.1:10001/ -s -X POST -H "Content-Type: application/json" --data "{\"jsonrpc\":\"2.0\",\"method\":\"xdag_getBalance\",\"params\":[\"BlockAddress\"],\"id\":1}"
 
 ## example 2:
-curl http://127.0.0.1:10001/ -s -X POST -H "Content-Type: application/json" --data "{\"jsonrpc\":\"2.0\",\"method\":\"xdag_getBalance\",\"params\":[\"5258190fe9a3787cfc8ddc711483637f9daa9c8f1910bcb1a6efb5e6dcf8eeba\"],\"id\":1}"
+curl http://127.0.0.1:10001/ -s -X POST -H "Content-Type: application/json" --data "{\"jsonrpc\":\"2.0\",\"method\":\"xdag_getBalance\",\"params\":[\"UDbeuykAXIKwNXuVEzpj5uN4imEenqPK\"],\"id\":1}"
 ```
 
 **Resp**
 
 ```shell
 # Response of example 1:
-{"jsonrpc":"2.0","id":1,"result":"1024.000000000"}
-
+{
+    "jsonrpc": "2.0",
+    "result": "10.000000000",
+    "id": "1"
+}
 
 # Response of example 2:
 {
-    "jsonrpc": "2.0",
-    "result": "64.200000000",
-    "id": "1"
+    "jsonrpc": "2.0",
+    "result": "0.000000000",
+    "id": "1"
 }
 ```
 
@@ -315,17 +472,21 @@ Used to return the balance of someone
 **Req**
 
 ```shell
-curl http://127.0.0.1:10001/ -s -X POST -H "Content-Type: application/json" --data "{\"jsonrpc\":\"2.0\",\"method\":\"xdag_getTransactionNonce\",\"params\":[\"K5q0ews/ma110QLUzePetOdU+EwYKrud\"],\"id\":1}"
+curl http://127.0.0.1:10001/ -s -X POST -H "Content-Type: application/json" --data "{\"jsonrpc\":\"2.0\",\"method\":\"xdag_getTransactionNonce\",\"params\":[\"accountAddress\"],\"id\":1}"
 
 # example: 
-curl http://127.0.0.1:10001/ -s -X POST -H "Content-Type: application/json" --data "{\"jsonrpc\":\"2.0\",\"method\":\"xdag_getTransactionNonce\",\"params\":[\"K5q0ews/ma110QLUzePetOdU+EwYKrud\"],\"id\":1}"
+curl http://127.0.0.1:10001/ -s -X POST -H "Content-Type: application/json" --data "{\"jsonrpc\":\"2.0\",\"method\":\"xdag_getTransactionNonce\",\"params\":[\"8PKBGqTAAnzSG8qbZGzDhoUihgC3cyvCH\"],\"id\":1}"
 ```
 
 **Resp**
 
 ```shell
 # Response of example:
-{"jsonrpc":"2.0","id":1,"result":"100"}
+{
+    "jsonrpc": "2.0",
+    "result": "1",
+    "id": "1"
+}
 ```
 
 
@@ -347,10 +508,26 @@ curl http://127.0.0.1:10001/ -s -X POST -H "Content-Type: application/json" --da
 
 ```shell
 # if sync done
-{"jsonrpc":"2.0","result":{"currentBlock":"3145066","highestBlock":"3145066","isSyncDone":true},"id":"1"}
+{
+    "jsonrpc": "2.0",
+    "result": {
+        "currentBlock": "3145729",
+        "highestBlock": "3145729",
+        "isSyncDone": true
+    },
+    "id": "1"
+}
 
 # else
-{"jsonrpc":"2.0","id":1,"result":{"currentBlock":null,"highestBlock":null,"isSyncDone":false}}
+{
+    "jsonrpc": "2.0",
+    "result": {
+        "currentBlock": null,
+        "highestBlock": null,
+        "isSyncDone": false
+    },
+    "id": "1"
+}
 ```
 
 ### 8. xdag_getTotalBalance
@@ -369,7 +546,11 @@ curl http://127.0.0.1:10001/ -s -X POST -H "Content-Type: application/json" --da
 
 ```shell
 # Response of example:
-{"jsonrpc":"2.0","id":1,"result":"5120.000000000"}
+{
+    "jsonrpc": "2.0",
+    "result": "324972.800000000",
+    "id": "1"
+}
 ```
 
 ### 9. xdag_getStatus
@@ -389,7 +570,22 @@ curl http://118.26.111.179:10001/ -s -X POST -H "Content-Type: application/json"
 
 ```shell
 # Response of example:
-{"jsonrpc":"2.0","result":{"nblock":"14154","totalNblocks":"14154","nmain":"3145068","totalNmain":"3145068","curDiff":"0xcdf6e16f95eecd1ec270cf22991","netDiff":"0xcdf6e16f95eecd1ec270cf22991","hashRateOurs":"1.0780205621433383","hashRateTotal":"1.0780205621433383","ourSupply":"1247022592.000000000","netSupply":"1247022592.000000000"},"id":"1"}
+{
+    "jsonrpc": "2.0",
+    "result": {
+        "nblock": "16252",
+        "totalNblocks": "16252",
+        "nmain": "3145733",
+        "totalNmain": "3145733",
+        "curDiff": "0xcdf6e16f95f2dea45901ab58240",
+        "netDiff": "0xcdf6e16f95f2dea45901ab58240",
+        "hashRateOurs": "1.547266524860277",
+        "hashRateTotal": "1.547266524860277",
+        "ourSupply": "1247065152.000000000",
+        "netSupply": "1247065152.000000000"
+    },
+    "id": "1"
+}
 ```
 
 
@@ -419,16 +615,44 @@ curl http://127.0.0.1:9999/ -s -X POST -H "Content-Type: application/json" --dat
 
 ```shell
 # success
-{"jsonrpc":"2.0","result":{"code":0,"result":["UjiGThuAvxA+dR7kgI8aXsnlpdaOQVNL"],"errMsg":null,"resInfo":["UjiGThuAvxA+dR7kgI8aXsnlpdaOQVNL"]},"id":"1"}  
+{
+    "jsonrpc": "2.0",
+    "result": {
+        "code": 0,
+        "result": [
+            "dqy+26fvbAH2oYXV2zLtYNzNiJO9/O4W"
+        ],
+        "errMsg": null,
+        "resInfo": [
+            "dqy+26fvbAH2oYXV2zLtYNzNiJO9/O4W"
+        ]
+    },
+    "id": "1"
+}
 
 # failed
-{"jsonrpc":"2.0","result":{"code":-10301,"result":null,"errMsg":"wallet unlock failed","resInfo":null},"id":"1"} 
+{
+    "jsonrpc": "2.0",
+    "result": {
+        "code": -10000,
+        "result": null,
+        "errMsg": "To address is illegal",
+        "resInfo": null
+    },
+    "id": "1"
+}
 
 # failed
-{"jsonrpc":"2.0","result":{"code":-10000,"result":null,"errMsg":"To address is illegal","resInfo":null},"id":"1"} 
-
-# failed
-{"jsonrpc":"2.0","result":{"code":-10201,"result":null,"errMsg":"balance not enough","resInfo":null},"id":"1"} 
+{
+    "jsonrpc": "2.0",
+    "result": {
+        "code": -10201,
+        "result": null,
+        "errMsg": "balance not enough",
+        "resInfo": null
+    },
+    "id": "1"
+}
 ```
 
 ### 11. xdag_personal_sendSafeTransaction
@@ -457,19 +681,67 @@ curl http://118.26.111.179:10001/ -s -X POST -H "Content-Type: application/json"
 
 ```shell
 # success
-{"jsonrpc":"2.0","result":{"code":0,"result":["UBYdzA+zhaHODY0REWcpMIOfkwbXze09"],"errMsg":null,"resInfo":["UBYdzA+zhaHODY0REWcpMIOfkwbXze09"]},"id":"1"}
+{
+    "jsonrpc": "2.0",
+    "result": {
+        "code": 0,
+        "result": [
+            "NbPoK3m8g2ihTJEGSq7rwrdCAXX/ye/I"
+        ],
+        "errMsg": null,
+        "resInfo": [
+            "NbPoK3m8g2ihTJEGSq7rwrdCAXX/ye/I"
+        ]
+    },
+    "id": "1"
+}
 
 # failed
-{"jsonrpc":"2.0","result":{"code":-10000,"result":null,"errMsg":"To address is illegal","resInfo":null},"id":"1"} 
+{
+    "jsonrpc": "2.0",
+    "result": {
+        "code": -10000,
+        "result": null,
+        "errMsg": "To address is illegal",
+        "resInfo": null
+    },
+    "id": "1"
+}
 
 # failed
-{"jsonrpc":"2.0","result":{"code":-10201,"result":null,"errMsg":"balance not enough","resInfo":null},"id":"1"}
+{
+    "jsonrpc": "2.0",
+    "result": {
+        "code": -10201,
+        "result": null,
+        "errMsg": "balance not enough",
+        "resInfo": null
+    },
+    "id": "1"
+}
 
 # failed
-{"jsonrpc":"2.0","result":{"code":-10500,"result":null,"errMsg":"The nonce passed is incorrect. Please fill in the nonce according to the query value","resInfo":null},"id":"1"}
+{
+    "jsonrpc": "2.0",
+    "result": {
+        "code": -10500,
+        "result": null,
+        "errMsg": "The nonce passed is incorrect. Please fill in the nonce according to the query value",
+        "resInfo": null
+    },
+    "id": "1"
+}
 
 # failed
-{"jsonrpc":"2.0","error":{"code":-32602,"message":"Transaction nonce cannot be empty and must be positive number","data":null},"id":"1"}
+{
+    "jsonrpc": "2.0",
+    "error": {
+        "code": -32602,
+        "message": "Transaction nonce cannot be empty and must be positive number",
+        "data": null
+    },
+    "id": "1"
+}
 ```
 
 
@@ -484,14 +756,18 @@ Used to return the reward of some height
 curl http://127.0.0.1:10001/ -s -X POST -H "Content-Type: application/json" --data "{\"jsonrpc\":\"2.0\",\"method\":\"xdag_getRewardByNumber\",\"params\":[\"BlockHeight\"],\"id\":1}"
 
 # example:
-curl http://127.0.0.1:10001/ -s -X POST -H "Content-Type: application/json" --data "{\"jsonrpc\":\"2.0\",\"method\":\"xdag_getRewardByNumber\",\"params\":[\"1000\"],\"id\":1}"
+curl http://127.0.0.1:10001/ -s -X POST -H "Content-Type: application/json" --data "{\"jsonrpc\":\"2.0\",\"method\":\"xdag_getRewardByNumber\",\"params\":[\"3000000\"],\"id\":1}"
 ```
 
 **Resp**
 
 ```shell
 # Response of example:
-{"jsonrpc":"2.0","id":1,"result":"1024.000000000"}
+{
+    "jsonrpc": "2.0",
+    "result": "64.000000000",
+    "id": "1"
+}
 ```
 
 
@@ -513,7 +789,11 @@ curl http://127.0.0.1:10001/ -s -X POST -H "Content-Type: application/json" --da
 
 ```shell
 # success
-{"jsonrpc":"2.0","result":"5kVDaMsrs0G3la+ykh8rYcrzDLDLkhiN","id":"1"}
+{
+    "jsonrpc": "2.0",
+    "result": "L/FTj6KuI6+gsxSHCyov7FH82DMIP45y",
+    "id": "1"
+}
 
 # failed
 {
@@ -538,7 +818,11 @@ curl http://118.26.111.179:10001/ -s -X POST -H "Content-Type: application/json"
 
 ```shell
 # Response of example:
-{"jsonrpc":"2.0","result":"mainnet","id":"1"}
+{
+    "jsonrpc": "2.0",
+    "result": "mainnet",
+    "id": "1"
+}
 ```
 
 
@@ -557,7 +841,24 @@ curl http://118.26.111.179:10001/ -s -X POST -H "Content-Type: application/json"
 
 ```shell
 # Response of example:
-{"jsonrpc":"2.0","result":[{"nodeAddress":"152.32.129.160:58536","connectTime":1761295400960,"inBound":0,"outBound":0},{"nodeAddress":"118.26.111.179:8001","connectTime":1761295400960,"inBound":0,"outBound":0}],"id":"1"}
+{
+    "jsonrpc": "2.0",
+    "result": [
+        {
+            "nodeAddress": "152.32.129.160:8001",
+            "connectTime": 1761295400960,
+            "inBound": 0,
+            "outBound": 0
+        },
+        {
+            "nodeAddress": "118.26.111.179:8001",
+            "connectTime": 1761295400960,
+            "inBound": 0,
+            "outBound": 0
+        }
+    ],
+    "id": "1"
+}
 ```
 
 ### ~~18. xdag_poolConfig~~
