@@ -207,9 +207,9 @@ $ mvn clean package -Dmaven.test.skip=true
     - Modify xdag-mainnet.conf
 
       ```
-      - "node.whiteIPs": Determines which nodes, under which IP addresses, can communicate with this node (Please ask the    community if "node.whiteIPs" needs to be updated, added or deleted).
+      - "node.whiteIPs": Determines which nodes, under which IP addresses, can communicate with this node (Please ask the community if "node.whiteIPs" needs to be updated, added or deleted).
       
-      - "fund.address": Set fund.address = "PKcBtHWDSnAWfZntqWPBLedqBShuKSTzS" (Required: Without this address, miner 	   rewards cannot be distributed).
+      - "fund.address": Set fund.address = "PKcBtHWDSnAWfZntqWPBLedqBShuKSTzS" (Required: Without this address, miner rewards cannot be distributed).
       
       - "node.generate.block.enable": Set node.generate.block.enable = true for mining nodes and node.generate.block.enable = false for exchanges.
       
