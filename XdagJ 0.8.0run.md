@@ -1,4 +1,4 @@
-# **XdagJ Node 0.7.0 Run Document**
+# **XdagJ Node 0.8.0 Run Document**
 
 
 
@@ -32,15 +32,18 @@ MySQL :Above v8.0
 
 - ***Make sure the XdagJ project is in the master branch:***
 
-  ```
-  # View the current branch.
-  $ git branch
+  - *View the current branch*
   
+    ```
+    $ git branch
+    ```
   
-  # Perform this operation when the current branch is not master.
-  $ git checkout master
+  - *Perform this operation when the current branch is not master*
+  
   ```
-
+    $ git checkout master
+    ```
+  
   
 
 ### **2. Configure MySQL**
@@ -52,49 +55,65 @@ MySQL :Above v8.0
     ```
     # install MySQL.
     $ sudo apt install mysql-server
-    
-    
-    # Log in to the MySQL database as the root user.
-    $ sudo mysql -u root
-    
-    
-    # change Password.
-    mysql> ALTER USER 'root'@'localhost' IDENTIFIED WITH mysql_native_password BY 'your_new_password';
-    mysql> FLUSH PRIVILEGES;
-    mysql> EXIT;
     ```
+
+  - *Change password*
+
+    - Log in to the MySQL database as the root user
+
+      ```
+      $ sudo mysql -u root
+      ```
+
+    - Change password
+
+      ```
+      mysql> ALTER USER 'root'@'localhost' IDENTIFIED WITH mysql_native_password BY 'your_new_password';
+      mysql> FLUSH PRIVILEGES;
+      mysql> EXIT;
+      ```
 
   - *Create a database for saving transaction history*
 
-    ```
-    # Log in to MySQL as the root user, using the password you just set.
-    $ mysql -u root -p
-    
-    
-    # Create a database named your_store_transaction_history_database_name.
-    mysql> CREATE DATABASE your_store_transaction_history_database_name;
-    
-    
-    # Check if the database was created successfully.
-    mysql> SHOW DATABASES;
-    ```
+    - Log in to MySQL as the root user, using the password you just set
+
+      ```
+      $ mysql -u root -p
+      ```
+      
+    - Create a database named your_store_transaction_history_database_name
+
+      ```
+      mysql> CREATE DATABASE your_store_transaction_history_database_name;
+      ```
+      
+    - Check if the database was created successfully
+
+      ```
+      mysql> SHOW DATABASES;
+      ```
 
   - *Create a table*
 
-    ```
-    # Select the database you just created.
-    mysql> USE your_store_transaction_history_database_name;
+    - Select the database you just created
     
+      ```
+      mysql> USE your_store_transaction_history_database_name;
+      ```
+      
+    - Locate the **`mysql_create_table.sql`** script in the **`xdagj/script`** folder. Create table **`t_transaction_history`** under this database
     
-    ###
-    1. Find the mysql_create_table.sql script, under the "xdagj/script" path.
-    2. Create a table under this database, source [mysql_create_table.sql file path].
-    ###
-    mysql> source absolute_path_of_your mysql_create_table.sql script;
+      ```
+      mysql> source absolute_path_of_your mysql_create_table.sql script;
+      
+      # For example: "source /home/ubuntu/xdagj/script/mysql_create_table.sql;"
+      ```
+      
+    - Check whether the table is created successfully
     
-    # For example: 
-    mysql> source /home/ubuntu/xdagj/script/mysql_create_table.sql;
-    ```
+      ```
+      mysql> SHOW TABLES;
+      ```
 
 - ***If you have already configured MySQL and have run nodes before, please perform the following steps:***
 
@@ -106,35 +125,39 @@ MySQL :Above v8.0
 
   - *Back up previous versions of transaction history*
 
+    - Select the database where you previously stored transaction history
+  
+      ```
+      mysql> USE your_store_transaction_history_database_name;
+      ```
+      
+    - Back up previous versions of transaction history data
+  
     ```
-    # Select the database where you previously stored transaction history
-    mysql> USE your_store_transaction_history_database_name;
-    
-    
-    # Back up previous versions of transaction history data
-    mysql> RENAME TABLE t_transaction_history TO transaction_history_v_0_7_2;
+      mysql> RENAME TABLE t_transaction_history TO transaction_history_v_0_7_2;
     ```
-
+  
   - *Re-create an empty t_transaction_history table*
-
-    ```
-    # Select the database where you previously stored transaction history.
-    mysql> USE your_store_transaction_history_database_name;
+  
+    - Select the database where you previously stored transaction history
     
+      ```
+      mysql> USE your_store_transaction_history_database_name;
+      ```
     
-    ###
-    1. Locate the mysql_create_table.sql script in the xdagj/script folder.
-    2. Create table t_transaction_history under this database, source [mysql_create_table.sql file path].
-    ###
-    mysql> source absolute_path_of_your mysql_create_table.sql script;
+    - Locate the **`mysql_create_table.sql`** script in the **`xdagj/script`** folder. Create table **`t_transaction_history`** under this database
     
-    # For example:
-    mysql> source /home/ubuntu/xdagj/script/mysql_create_table.sql;
+      ```
+      mysql> source absolute_path_of_your mysql_create_table.sql script;
+      
+      # For example: "source /home/ubuntu/xdagj/script/mysql_create_table.sql;"
+      ```
     
+    - Check whether the table is created successfully
     
-    # Check whether the table is created successfully.
-    mysql> SHOW TABLES;
-    ```
+      ```
+      mysql> SHOW TABLES;
+      ```
 
 
 
@@ -147,21 +170,21 @@ $ mvn clean package -Dmaven.test.skip=true
 
 
 
-### **4. Create a "run" Folder and Modify the Configuration Files**
+### **4. Create "run" Folder and Modify the Configuration Files**
 
 - ***If you have not created a "run" folder before, please follow the steps below:***
 
-  - *Create a "run" folder and copy the necessary files:*
+  - *Create a "run" folder:*
 
     ```
-    # Create a run folder, which is usually in the same directory as the xdagj project.
+    # Create a run folder, which is usually in the same directory as the xdagj.
     $ mkdir run
     ```
 
   - *Copy the necessary files to the "run" folder:*
 
     ```
-      Copy "xdag-mainnet.conf", "druid.properties", "log4j2.xml", "xdag.sh", "xdagj-0.8.0-shaded.jar" to "run" folder. Following is the path of the above files:
+    Copy "xdag-mainnet.conf", "druid.properties", "log4j2.xml", "xdag.sh", "xdagj-0.8.0-shaded.jar" to "run" folder. 
     
     - "xdag-mainnet.conf", "druid.properties", "log4j2.xml" are located in the xdagj/src/main/resources
     
@@ -184,9 +207,9 @@ $ mvn clean package -Dmaven.test.skip=true
     - Modify xdag-mainnet.conf
 
       ```
-      - "node.whiteIPs": Determines which nodes, under which IP addresses, can communicate with this node (Please ask the community if "node.whiteIPs" needs to be updated, added or deleted).
+      - "node.whiteIPs": Determines which nodes, under which IP addresses, can communicate with this node (Please ask the    community if "node.whiteIPs" needs to be updated, added or deleted).
       
-      - "fund.address": Set fund.address = "PKcBtHWDSnAWfZntqWPBLedqBShuKSTzS" (Required: Without this address, miner rewards cannot be distributed).
+      - "fund.address": Set fund.address = "PKcBtHWDSnAWfZntqWPBLedqBShuKSTzS" (Required: Without this address, miner 	   rewards cannot be distributed).
       
       - "node.generate.block.enable": Set node.generate.block.enable = true for mining nodes and node.generate.block.enable = false for exchanges.
       
@@ -239,13 +262,14 @@ $ mvn clean package -Dmaven.test.skip=true
 
 ```
 ###
-1. If you use an existing snapshot file, please ignore this step.
-2. Please make sure to update file "xdagj-0.8.0-shaded.jar" before performing this step.
-3. Snapshot file "SNAPSHOT" will be generated in directory mainnet/rocksdb/xdagdb.
+Notice:
+	1. Please make sure to update file "xdagj-0.8.0-shaded.jar" before performing this step.
+	2. Snapshot file "SNAPSHOT" will be generated in directory mainnet/rocksdb/xdagdb.
 ###
 
-# Run this command in the /run directory to make the snapshot.
-$ sh xdag.sh --makesnapshot convertxamount
+# Run the following command to make the snapshot.
+$ cd run
+$ sh xdag.sh --makesnapshot
 ```
 
 
@@ -253,17 +277,102 @@ $ sh xdag.sh --makesnapshot convertxamount
 ### 7. Verify the Version of xdag.sh
 
 ```
-# Run this command in the /run directory to verify the version.
-$ sh xdag.sh --version  // return: 0.8.0
+# Run this command in the /run path to verify the version.
+$ sh xdag.sh --version    // return: 0.8.0
 ```
 
 
 
 ### 8. Start XdagJ
 
+```
+###
+Notice:
+	1. If there is no wallet folder under the current mainnet directory, it will be created automatically when the node starts.
+	2. The node and pool wallet addresses must be different; otherwise, rewards will not be issued.
+###
+
+# Run the following command to start the xdagj node.
+$ cd run
+$ sh xdag.sh --enablesnapshot true [Snapshot Height] [Timestamp]    // Check with the community for the correct startup command.
+
+# For example: "sh xdag.sh --enablesnapshot true 3140605 19a15630000" (Check with the community for the correct startup command)
+```
+
+**Notice:** If an exception occurs when starting the snapshot, delete the loaded data from **`t_transaction_history`** in MySQL. Ensure the table is empty before restarting. Also, delete all non-SNAPSHOT files in **`rocksdb/xdagdb`**.
 
 
-### **9. Verify SNAPSHOT and MySQL Data**
+
+### **9. Verify MySQL Data and SNAPSHOT Data**
+
+- ***Verify MySQL data:***
+
+  ```
+  # Login to MySQL
+  $ mysql -u root -p
+  ```
+
+  ```
+  ###
+  1. Run the following command to verify whether the data is successfully written to MySQL.
+  2. If the data amount is greater than 0, it means that it has been successfully written to MySQL.
+  ###
+  mysql> USE you_database_name;
+  mysql> SELECT COUNT(*) FROM t_transaction_history;
+  ```
 
 
+
+### 10. Check the Node State ###
+
+- ***This is an example of a successful node startup result:***
+
+  ```
+  ubuntu@xxx-xxx-xxx-xxx:~/XdagJNode/run$ sh xdag.sh --enablesnapshot true 3140605 19a15630000
+  xdag.sh: 3: ulimit: error setting limit (Operation not permitted)
+  enable snapshot:true
+  Please Enter Wallet Password:
+  init snapshot...
+  amount in address: 631490160.480122105
+  amount in blocks: 615276623.519882021
+  init snapshotJ done
+  time：179815ms
+  Our balance: 0.000000000
+  All amount: 1246766784.000004126
+  telnetd is running on 127.0.0.1:6001
+  Mar 09, 2025 3:10:05 AM org.jline.builtins.telnet.PortListener run
+  INFO: Listening to Port 6,001 with a connectivity queue size of 10.
+  ```
+
+- ***Check the node status by using the telnet:***
+
+  - *Start telnet*
+
+    - Run the following command to use telnet
+
+      ```
+      $ telnet 127.0.0.1 6001
+      ```
+
+    - Enter the password, the password is admin.telnet.password in xdag-mainnet.conf
+
+      ```
+      Enter Admin password>[Your password]
+      ```
+
+  - *List all methods in telnet*
+
+    ```
+    xdag> help
+    ```
+
+  - *Check the state of the node*
+
+    ```
+    xdag> state
+    ```
+
+    **Notice:** If the returned result is **`Synchronized with the main network. Normal operation.`**, it indicates that synchronization is complete and block generation is functioning normally. At this point, your node has been successfully set up and synchronized with the mainnet.
+
+  
 
