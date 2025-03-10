@@ -133,9 +133,9 @@ MySQL :Above v8.0
       
     - Back up previous versions of transaction history data
   
-    ```
-      mysql> RENAME TABLE t_transaction_history TO transaction_history_v_0_7_2;
-    ```
+      ```
+      mysql> RENAME TABLE t_transaction_history TO transaction_history_v_0_7_2;  
+      ```
   
   - *Re-create an empty t_transaction_history table*
   
@@ -245,7 +245,7 @@ $ mvn clean package -Dmaven.test.skip=true
 ### **5. Download the SNAPSHOT File**
 
 ```
-1. Create the /main/rocksdb/xdagdb directory under the run folder
+1. Create the /main/rocksdb/xdagdb directory under the run folder.
 
 2. SNAPSHOT download address: https://storage.xdagpool.com/.
 
@@ -294,9 +294,9 @@ Notice:
 
 # Run the following command to start the xdagj node.
 $ cd run
-$ sh xdag.sh --enablesnapshot true [Snapshot Height] [Timestamp]    // Check with the community for the correct startup command.
+$ sh xdag.sh --enablesnapshot true [Snapshot Height] [Timestamp]    // Check with the community for the correct command.
 
-# For example: "sh xdag.sh --enablesnapshot true 3140605 19a15630000" (Check with the community for the correct startup command)
+# For example: "sh xdag.sh --enablesnapshot true 3140605 19a15630000" (Check with the community for the correct command).
 ```
 
 **Notice:** If an exception occurs when starting the snapshot, delete the loaded data from **`t_transaction_history`** in MySQL. Ensure the table is empty before restarting. Also, delete all non-SNAPSHOT files in **`rocksdb/xdagdb`**.
@@ -308,7 +308,7 @@ $ sh xdag.sh --enablesnapshot true [Snapshot Height] [Timestamp]    // Check wit
 - ***Verify MySQL data:***
 
   ```
-  # Login to MySQL
+  # Login to MySQL.
   $ mysql -u root -p
   ```
 
