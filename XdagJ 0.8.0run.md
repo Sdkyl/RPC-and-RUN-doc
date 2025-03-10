@@ -40,7 +40,7 @@ MySQL :Above v8.0
   
   - *Perform this operation when the current branch is not master*
   
-  ```
+    ```
     $ git checkout master
     ```
   
