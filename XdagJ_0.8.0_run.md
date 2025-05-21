@@ -187,13 +187,13 @@ $ mvn clean package -Dmaven.test.skip=true
   - *Copy the necessary files to the "run" folder:*
 
     ```
-    Copy "xdag-mainnet.conf", "druid.properties", "log4j2.xml", "xdag.sh", "xdagj-0.8.0-shaded.jar" to "run" folder. 
+    Copy "xdag-mainnet.conf", "druid.properties", "log4j2.xml", "xdag.sh", "xdagj-0.8.0-executable.jar" to "run" folder. 
     
     - "xdag-mainnet.conf", "druid.properties", "log4j2.xml" are located in the xdagj/src/main/resources
     
     - "xdag.sh" is located in the xdagj/script
     
-    - "xdagj-0.8.0-shaded.jar" is located in the xdagj/target
+    - "xdagj-0.8.0-executable.jar" is located in the xdagj/target
     ```
 
   - *Modify the configuration files:*
@@ -234,7 +234,7 @@ $ mvn clean package -Dmaven.test.skip=true
 - ***If you have already created the "run" folder and run the node before, follow these steps:***
 
   ```
-  - Copy xdagj-0.8.0-shaded.jar to the run folder.
+  - Copy xdagj-0.8.0-executable.jar to the run folder.
   
   - Modify the XDAG_VERSION in xdag.sh to XDAG_VERSION="0.8.0".
   
@@ -266,7 +266,7 @@ $ mvn clean package -Dmaven.test.skip=true
 ```shell
 ###
 Notice:
-	1. Please make sure to update file "xdagj-0.8.0-shaded.jar" before performing this step.
+	1. Please make sure to update file "xdagj-0.8.0-executable.jar" before performing this step.
 	2. Snapshot file "SNAPSHOT" will be generated in directory mainnet/rocksdb/xdagdb.
 ###
 
