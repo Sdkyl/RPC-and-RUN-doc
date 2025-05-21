@@ -4,13 +4,15 @@
 
 ## System Environment
 
-```
-JDK : v17
+```shell
+JDK : v21
 
 Maven : v3.9.1
 
-MySQL :Above v8.0
+MySQL : Above v8.0
 ```
+
+**Notice:**  The JDK version has been updated from **`JDK 17`** to **`JDK 21`**.
 
 
 
@@ -20,27 +22,28 @@ MySQL :Above v8.0
 
 - ***If the XdagJ project does not exist:***
 
-  ```
+  ```shell
   $ git clone https://github.com/XDagger/xdagj.git
   ```
 
 - ***If the XdagJ project already exists:***
 
-  ```
-  $ cd xdagj && git pull
+  ```shell
+  $ cd xdagj 
+  $ git pull
   ```
 
 - ***Make sure the XdagJ project is in the master branch:***
 
   - *View the current branch*
   
-    ```
+    ```shell
     $ git branch
     ```
   
   - *Perform this operation when the current branch is not master*
   
-    ```
+    ```shell
     $ git checkout master
     ```
   
@@ -52,7 +55,7 @@ MySQL :Above v8.0
 
   - *Install MySQL*
 
-    ```
+    ```shell
     # install MySQL.
     $ sudo apt install mysql-server
     ```
@@ -61,13 +64,13 @@ MySQL :Above v8.0
 
     - Log in to the MySQL database as the root user
 
-      ```
+      ```shell
       $ sudo mysql -u root
       ```
 
     - Change password
 
-      ```
+      ```mysql
       mysql> ALTER USER 'root'@'localhost' IDENTIFIED WITH mysql_native_password BY 'your_new_password';
       mysql> FLUSH PRIVILEGES;
       mysql> EXIT;
@@ -77,19 +80,19 @@ MySQL :Above v8.0
 
     - Log in to MySQL as the root user, using the password you just set
 
-      ```
+      ```shell
       $ mysql -u root -p
       ```
       
     - Create a database named your_store_transaction_history_database_name
 
-      ```
+      ```mysql
       mysql> CREATE DATABASE your_store_transaction_history_database_name;
       ```
       
     - Check if the database was created successfully
 
-      ```
+      ```mysql
       mysql> SHOW DATABASES;
       ```
 
@@ -97,13 +100,13 @@ MySQL :Above v8.0
 
     - Select the database you just created
     
-      ```
+      ```mysql
       mysql> USE your_store_transaction_history_database_name;
       ```
       
     - Locate the **`mysql_create_table.sql`** script in the **`xdagj/script`** folder. Create table **`t_transaction_history`** under this database
     
-      ```
+      ```mysql
       mysql> source absolute_path_of_your mysql_create_table.sql script;
       
       # For example: "source /home/ubuntu/xdagj/script/mysql_create_table.sql;"
@@ -111,7 +114,7 @@ MySQL :Above v8.0
       
     - Check whether the table is created successfully
     
-      ```
+      ```mysql
       mysql> SHOW TABLES;
       ```
 
@@ -119,7 +122,7 @@ MySQL :Above v8.0
 
   - *Login to MySQL*
 
-    ```
+    ```shell
     $ mysql -u root -p
     ```
 
@@ -127,13 +130,13 @@ MySQL :Above v8.0
 
     - Select the database where you previously stored transaction history
   
-      ```
+      ```mysql
       mysql> USE your_store_transaction_history_database_name;
       ```
       
     - Back up previous versions of transaction history data
   
-      ```
+      ```mysql
       mysql> RENAME TABLE t_transaction_history TO transaction_history_v_0_7_2;  
       ```
   
@@ -141,13 +144,13 @@ MySQL :Above v8.0
   
     - Select the database where you previously stored transaction history
     
-      ```
+      ```mysql
       mysql> USE your_store_transaction_history_database_name;
       ```
     
     - Locate the **`mysql_create_table.sql`** script in the **`xdagj/script`** folder. Create table **`t_transaction_history`** under this database
     
-      ```
+      ```mysql
       mysql> source absolute_path_of_your mysql_create_table.sql script;
       
       # For example: "source /home/ubuntu/xdagj/script/mysql_create_table.sql;"
@@ -155,7 +158,7 @@ MySQL :Above v8.0
     
     - Check whether the table is created successfully
     
-      ```
+      ```mysql
       mysql> SHOW TABLES;
       ```
 
@@ -163,7 +166,7 @@ MySQL :Above v8.0
 
 ### **3. Execute mvn**
 
-```
+```shell
 $ cd xdagj
 $ mvn clean package -Dmaven.test.skip=true
 ```
@@ -176,7 +179,7 @@ $ mvn clean package -Dmaven.test.skip=true
 
   - *Create a "run" folder:*
 
-    ```
+    ```shell
     # Create a run folder, which is usually in the same directory as the xdagj.
     $ mkdir run
     ```
@@ -260,7 +263,7 @@ $ mvn clean package -Dmaven.test.skip=true
 
 ### **6. Make Snapshot (Developer node steps: Ignore if not relevant)**
 
-```
+```shell
 ###
 Notice:
 	1. Please make sure to update file "xdagj-0.8.0-shaded.jar" before performing this step.
@@ -276,7 +279,7 @@ $ sh xdag.sh --makesnapshot
 
 ### 7. Verify the Version of xdag.sh
 
-```
+```shell
 # Run this command in the /run path to verify the version.
 $ sh xdag.sh --version    // return: 0.8.0
 ```
@@ -293,7 +296,7 @@ Notice:
 ###
 ```
 
-```
+```shell
 # Run the following command to start the xdagj node.
 $ cd run
 $ sh xdag.sh --enablesnapshot true [Snapshot Height] [Timestamp]    // Check with the community for the correct command.
@@ -309,12 +312,12 @@ $ sh xdag.sh --enablesnapshot true [Snapshot Height] [Timestamp]    // Check wit
 
 - ***Verify MySQL data:***
 
-  ```
+  ```shell
   # Login to MySQL.
   $ mysql -u root -p
   ```
 
-  ```
+  ```mysql
   ###
   1. Run the following command to verify whether the data is successfully written to MySQL.
   2. If the data amount is greater than 0, it means that it has been successfully written to MySQL.
@@ -352,25 +355,25 @@ $ sh xdag.sh --enablesnapshot true [Snapshot Height] [Timestamp]    // Check wit
 
     - Run the following command to use telnet
 
-      ```
+      ```shell
       $ telnet 127.0.0.1 6001
       ```
 
     - Enter the password, the password is admin.telnet.password in xdag-mainnet.conf
 
-      ```
+      ```shell
       Enter Admin password>[Your password]
       ```
 
   - *List all methods in telnet*
 
-    ```
+    ```shell
     xdag> help
     ```
 
   - *Check the state of the node*
 
-    ```
+    ```shell
     xdag> state
     ```
 
