@@ -291,7 +291,9 @@ Notice:
 	1. If there is no wallet folder under the current mainnet directory, it will be created automatically when the node starts.
 	2. The node and pool wallet addresses must be different; otherwise, rewards will not be issued.
 ###
+```
 
+```
 # Run the following command to start the xdagj node.
 $ cd run
 $ sh xdag.sh --enablesnapshot true [Snapshot Height] [Timestamp]    // Check with the community for the correct command.
