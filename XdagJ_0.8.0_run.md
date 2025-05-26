@@ -334,11 +334,11 @@ $ sh xdag.sh --enablesnapshot true [Snapshot Height] [Timestamp]    // Check wit
 
   - *This is an example of a successful node startup result:*
 
-    ![](F:\360MoveData\Users\June\Desktop\b5126fb3bf45adcedb4a3da11ff0e88.png)
+    ![](assests\image-20250526154143345.png)
 
   - *This is an example of the output of the "stats" command right after the snapshot has been loaded:*
 
-    ![image-20250526165947789](C:\Users\June\AppData\Roaming\Typora\typora-user-images\image-20250526165947789.png)
+    ![](assests\image-20250526165947789.png)
 
   - *Verify SNAPSHOT all balance:*
 
