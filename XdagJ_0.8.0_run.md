@@ -334,11 +334,11 @@ $ sh xdag.sh --enablesnapshot true [Snapshot Height] [Timestamp]    // Check wit
 
   - *This is an example of a successful node startup result:*
 
-    ![](assests\image-20250526154143345.png)
+    ![](assests\b5126fb3bf45adcedb4a3da11ff0e88.png)
 
   - *This is an example of the output of the "stats" command right after the snapshot has been loaded:*
 
-    ![](assests\image-20250526165947789.png)
+    ![image-20250526165947789](assests\cf92f999d00d0d750a0124ad094eb47.png)
 
   - *Verify SNAPSHOT all balance:*
 
