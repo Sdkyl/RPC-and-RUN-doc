@@ -288,7 +288,7 @@ $ sh xdag.sh --version    // return: 0.8.0
 
 ### 8. Start XdagJ
 
-```
+```shell
 ###
 Notice:
 	1. If there is no wallet folder under the current mainnet directory, it will be created automatically when the node starts.
@@ -308,9 +308,9 @@ $ sh xdag.sh --enablesnapshot true [Snapshot Height] [Timestamp]    // Check wit
 
 
 
-### **9. Verify MySQL Data and SNAPSHOT Data**
+### **9. Verify MySQL Data**
 
-- ***Verify MySQL data:***
+- ***Verify whether the data is successfully written to MySQL:***
 
   ```shell
   # Login to MySQL.
@@ -328,30 +328,40 @@ $ sh xdag.sh --enablesnapshot true [Snapshot Height] [Timestamp]    // Check wit
 
 
 
-### 10. Check the Node State ###
+### 10. Verify SNAPSHOT Data and Check the Node State ###
 
-- ***This is an example of a successful node startup result:***
+- ***Verify SNAPSHOT data:***
 
-  ```
-  ubuntu@xxx-xxx-xxx-xxx:~/XdagJNode/run$ sh xdag.sh --enablesnapshot true 3140605 19a15630000
-  xdag.sh: 3: ulimit: error setting limit (Operation not permitted)
-  enable snapshot:true
-  Please Enter Wallet Password:
-  init snapshot...
-  amount in address: 631490160.480122105
-  amount in blocks: 615276623.519882021
-  init snapshotJ done
-  time：179815ms
-  Our balance: 0.000000000
-  All amount: 1246766784.000004126
-  telnetd is running on 127.0.0.1:6001
-  Mar 09, 2025 3:10:05 AM org.jline.builtins.telnet.PortListener run
-  INFO: Listening to Port 6,001 with a connectivity queue size of 10.
-  ```
+  - *This is an example of a successful node startup result:*
+
+    ![](F:\360MoveData\Users\June\Desktop\b5126fb3bf45adcedb4a3da11ff0e88.png)
+
+  - *This is an example of the output of the "stats" command right after the snapshot has been loaded:*
+
+    ![image-20250526165947789](C:\Users\June\AppData\Roaming\Typora\typora-user-images\image-20250526165947789.png)
+
+  - *Verify SNAPSHOT all balance:*
+
+    ```shell
+    x: All amount in SNAPSHOT, printed out after the snapshot is loaded
+    
+    y: All supply in stats
+    
+    y = x - 466 * 64  
+    
+    ### 
+    	example:
+    		x (All amount) = 1246766784.000004126
+    	
+    		y (XDAG supply) = 1246736960.000000000
+    	
+    		y = x - 466 * 64  =>  1246736960 = 1246766784 - 466 * 64
+    ###
+    ```
 
 - ***Check the node status by using the telnet:***
 
-  - *Start telnet*
+  - *Start telnet:*
 
     - Run the following command to use telnet
 
@@ -365,19 +375,27 @@ $ sh xdag.sh --enablesnapshot true [Snapshot Height] [Timestamp]    // Check wit
       Enter Admin password>[Your password]
       ```
 
-  - *List all methods in telnet*
+  - *List all methods in telnet:*
 
     ```shell
     xdag> help
     ```
 
-  - *Check the state of the node*
+  - *Check the state of the node:*
 
     ```shell
     xdag> state
     ```
 
     **Notice:** If the returned result is **`Synchronized with the main network. Normal operation.`**, it indicates that synchronization is complete and block generation is functioning normally. At this point, your node has been successfully set up and synchronized with the mainnet.
+
+  - *View the statistics of the node:*
+
+    ```shell
+    xdag> stats
+    ```
+
+    
 
   
 
