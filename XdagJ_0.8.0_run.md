@@ -4,15 +4,93 @@
 
 ## System Environment
 
-```shell
+```bash
 JDK : v21
+
+GCC : Above v13.1.0
 
 Maven : v3.9.1
 
 MySQL : Above v8.0
 ```
 
-**Notice:**  The JDK version has been updated from **`JDK 17`** to **`JDK 21`**.
+### 1. Check if the current JDK version is JDK 21
+
+```bash
+$ java -version
+```
+
+
+
+### 2. Check if the current GCC version is v13.1.0 or above
+
+```bash
+$ gcc --version
+```
+
+- ***Upgrade GCC version to v13.1.0 or above:***
+
+  - *Take Debian/Ubuntu as an example*
+
+    - Add the official GCC toolchain PPA
+
+      ```bash
+      $ sudo add-apt-repository ppa:ubuntu-toolchain-r/test
+      $ sudo apt update
+      ```
+
+    - Install gcc-13 and g++-13
+
+      ```bash
+      $ sudo apt install gcc-13 g++-13
+      ```
+
+    - Set gcc-13 as the default version
+
+      After the installation is complete, in order to make the `gcc` and `g++` commands point to gcc-13 and g++-13 by default, you need to configure alternatives:
+
+      ```bash
+      $ sudo update-alternatives --install /usr/bin/gcc gcc /usr/bin/gcc-13 60
+      $ sudo update-alternatives --install /usr/bin/g++ g++ /usr/bin/g++-13 60
+      ```
+
+      Then execute the following command to select which version to use by default (if you have multiple versions on your machine):
+
+      ```bash
+      $ sudo update-alternatives --config gcc
+      ```
+
+      You will be prompted to select a serial number, select the one that points to `/usr/bin/gcc-13`.
+
+    - Verify Installation
+
+      ```bash
+      $ gcc --version
+      $ g++ --version
+      ```
+
+      You should see the output:
+
+      ```bash
+      gcc (Ubuntu 13.x.x...) ...
+      g++ (Ubuntu 13.x.x...) ...
+      ```
+
+
+
+### 3. Check if the current Maven version is v3.9.1 or above
+
+```bash
+$ mvn -v
+```
+
+
+
+### 4. Check if the current MySQL version is v8.0 or above
+
+```bash
+$ mysql -V
+```
 
 
 
@@ -209,7 +287,7 @@ $ mvn clean package -Dmaven.test.skip=true
 
     - Modify xdag-mainnet.conf
 
-      ```
+      ```bash
       - "node.whiteIPs": Determines which nodes, under which IP addresses, can communicate with this node (Please ask the community if "node.whiteIPs" needs to be updated, added or deleted).
       
       - "fund.address": Set fund.address = "PKcBtHWDSnAWfZntqWPBLedqBShuKSTzS" (Required: Without this address, miner rewards cannot be distributed).
@@ -219,21 +297,23 @@ $ mvn clean package -Dmaven.test.skip=true
       - "randomx.flags.fullmem": Please set randomx.flags.fullmem = false.
       
       - "fund.ration" and "node.ration" are the ratios of foundation reward and block node reward, respectively.
-      
+      ```
+    
+      ```bash
       - node.reject.transaction.address is the address to be denied service.
       
-      - pool.whiteIPs is the pool whitelist. If set to ["0.0.0.0"], any pool can access the node. Otherwise, only specified IPs are allowed.
+    - pool.whiteIPs is the pool whitelist. If set to ["0.0.0.0"], any pool can access the node. Otherwise, only specified IPs are allowed.
       ```
 
     - Modify xdag.sh
-
-      ```
+    
+      ```bash
       - XDAG_VERSION: Modify XDAG_VERSION to "0.8.0".
       ```
 
 - ***If you have already created the "run" folder and run the node before, follow these steps:***
 
-  ```
+  ```bash
   - Copy xdagj-0.8.0-executable.jar to the run folder.
   
   - Modify the XDAG_VERSION in xdag.sh to XDAG_VERSION="0.8.0".
@@ -247,7 +327,7 @@ $ mvn clean package -Dmaven.test.skip=true
 
 ### **5. Download the SNAPSHOT File**
 
-```
+```bash
 1. Create the /main/rocksdb/xdagdb directory under the run folder.
 
 2. SNAPSHOT download address: https://storage.xdagpool.com/.
