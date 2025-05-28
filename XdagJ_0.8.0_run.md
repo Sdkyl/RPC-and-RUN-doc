@@ -14,6 +14,8 @@ Maven : v3.9.1
 MySQL : Above v8.0
 ```
 
+
+
 ### 1. Check if the current JDK version is JDK 21
 
 ```bash
@@ -94,6 +96,8 @@ $ mysql -V
 
 
 
+
+
 ## Operation Steps
 
 ### **1. Clone Code**
@@ -104,12 +108,16 @@ $ mysql -V
   $ git clone https://github.com/XDagger/xdagj.git
   ```
 
+  
+
 - ***If the XdagJ project already exists:***
 
   ```shell
   $ cd xdagj 
   $ git pull
   ```
+
+  
 
 - ***Make sure the XdagJ project is in the master branch:***
 
@@ -118,6 +126,8 @@ $ mysql -V
     ```shell
     $ git branch
     ```
+  
+    
   
   - *Perform this operation when the current branch is not master*
   
@@ -138,6 +148,8 @@ $ mysql -V
     $ sudo apt install mysql-server
     ```
 
+    
+
   - *Change password*
 
     - Log in to the MySQL database as the root user
@@ -153,6 +165,8 @@ $ mysql -V
       mysql> FLUSH PRIVILEGES;
       mysql> EXIT;
       ```
+      
+      
 
   - *Create a database for saving transaction history*
 
@@ -173,6 +187,8 @@ $ mysql -V
       ```mysql
       mysql> SHOW DATABASES;
       ```
+      
+      
 
   - *Create a table*
 
@@ -195,6 +211,8 @@ $ mysql -V
       ```mysql
       mysql> SHOW TABLES;
       ```
+      
+      
 
 - ***If you have already configured MySQL and have run nodes before, please perform the following steps:***
 
@@ -204,8 +222,10 @@ $ mysql -V
     $ mysql -u root -p
     ```
 
-  - *Back up previous versions of transaction history*
+    
 
+  - *Back up previous versions of transaction history*
+  
     - Select the database where you previously stored transaction history
   
       ```mysql
@@ -217,6 +237,8 @@ $ mysql -V
       ```mysql
       mysql> RENAME TABLE t_transaction_history TO transaction_history_v_0_7_2;  
       ```
+      
+      
   
   - *Re-create an empty t_transaction_history table*
   
@@ -253,6 +275,18 @@ $ mvn clean package -Dmaven.test.skip=true
 
 ### **4. Create "run" Folder and Modify the Configuration Files**
 
+- ***The path to the configuration file to be used:***
+
+  ```bash
+  - "xdag-mainnet.conf", "druid.properties", "log4j2.xml" are located in the xdagj/src/main/resources
+  
+  - "xdag.sh" is located in the xdagj/script
+  
+  - "xdagj-0.8.0-executable.jar" is located in the xdagj/target
+  ```
+
+  
+
 - ***If you have not created a "run" folder before, please follow the steps below:***
 
   - *Create a "run" folder:*
@@ -262,81 +296,89 @@ $ mvn clean package -Dmaven.test.skip=true
     $ mkdir run
     ```
 
+    
+
   - *Copy the necessary files to the "run" folder:*
 
-    ```
-    Copy "xdag-mainnet.conf", "druid.properties", "log4j2.xml", "xdag.sh", "xdagj-0.8.0-executable.jar" to "run" folder. 
+    Copy **`xdag-mainnet.conf`**, **`druid.properties`**, **`log4j2.xml`**, **`xdag.sh`**, **`xdagj-0.8.0-executable.jar`** to "run" folder. 
     
-    - "xdag-mainnet.conf", "druid.properties", "log4j2.xml" are located in the xdagj/src/main/resources
     
-    - "xdag.sh" is located in the xdagj/script
     
-    - "xdagj-0.8.0-executable.jar" is located in the xdagj/target
-    ```
-
   - *Modify the configuration files:*
 
     - Modify druid.properties
 
-      ```
-      - Modify the url in the druid.properties file to: jdbc:mysql://localhost:3306/your_store_transaction_history_database_name?
-      autoReconnect=true&useUnicode=true&characterEncoding=utf-8&&serverTimezone=UTC
-      
-      - The user name is root, and the password is the password (your_new_password) set in the mysql configuration before.
-      ```
+      - Modify the "url" to: **`url=jdbc:mysql://localhost:3306/your_store_transaction_history_database_name?autoReconnect=true&useUnicode=true&characterEncoding=utf-8&&serverTimezone=UTC`** *(Replace "your_store_transaction_history_database_name" with the correct database name)*
+
+      - Modify the "username" to: **`root`**
+
+      - Modify the "password" to: Your new password set in the mysql configuration before.
+
+        
 
     - Modify xdag-mainnet.conf
 
-      ```bash
-      - "node.whiteIPs": Determines which nodes, under which IP addresses, can communicate with this node (Please ask the community if "node.whiteIPs" needs to be updated, added or deleted).
-      
-      - "fund.address": Set fund.address = "PKcBtHWDSnAWfZntqWPBLedqBShuKSTzS" (Required: Without this address, miner rewards cannot be distributed).
-      
-      - "node.generate.block.enable": Set node.generate.block.enable = true for mining nodes and node.generate.block.enable = false for exchanges.
-      
-      - "randomx.flags.fullmem": Please set randomx.flags.fullmem = false.
-      
-      - "fund.ration" and "node.ration" are the ratios of foundation reward and block node reward, respectively.
-      ```
-    
-      ```bash
-      - node.reject.transaction.address is the address to be denied service.
-      
-    - pool.whiteIPs is the pool whitelist. If set to ["0.0.0.0"], any pool can access the node. Otherwise, only specified IPs are allowed.
-      ```
+      - "pool.whiteIPs": If set **`pool.whiteIPs = ["0.0.0.0"]`**, any pool can access the node. Otherwise, only specified IPs are allowed.
+
+      - "node.whiteIPs": Please ask the community if **`node.whiteIPs`** needs to be updated, added or deleted *(Must be set up  before starting the node)*.
+      - "node.generate.block.enable": 
+          1. Set **`node.generate.block.enable = true`** for mining nodes.
+          2. Set **`node.generate.block.enable = false`** for exchanges.
+
+      - "node.reject.transaction.address": Please ask the community to modify the content of **`node.reject.transaction.address`**.
+
+      - "node.ration": The ratios of block node reward.
+
+      - "fund.address": Set **`fund.address = "PKcBtHWDSnAWfZntqWPBLedqBShuKSTzS"`** *(Without this address, miner rewards cannot be distributed)*.
+
+      - "fund.ration": The ratios of foundation reward.
+
+      - Make sure the RPC switch is configured as **`rpc.http.enabled = true`** instead of **`rpc.enabled = true`**.
+
+      - "randomx.flags.fullmem": Please set **`randomx.flags.fullmem = false`**.
+
+        
 
     - Modify xdag.sh
-    
-      ```bash
-      - XDAG_VERSION: Modify XDAG_VERSION to "0.8.0".
-      ```
+
+      - Modify **`XDAG_VERSION="${project.version}"`** to **`XDAG_VERSION="0.8.0"`**
+
+        
 
 - ***If you have already created the "run" folder and run the node before, follow these steps:***
 
-  ```bash
-  - Copy xdagj-0.8.0-executable.jar to the run folder.
-  
-  - Modify the XDAG_VERSION in xdag.sh to XDAG_VERSION="0.8.0".
-  
-  - In xdag-mainnet.conf, set randomx.flags.fullmem = false.
-  
-  - Please ask the community if "node.whiteIPs" needs to be updated, added or deleted.
-  ```
+  - Copy **`xdagj-0.8.0-executable.jar`** to the run folder.
+
+    
+
+  - Modify xdag.sh:
+
+    1. Copy **`xdagj.sh`** to the run folder.
+
+    2. Modify **`XDAG_VERSION="${project.version}"`** to **`XDAG_VERSION="0.8.0"`**
+
+      
+
+  - Modify xdag-mainnet.conf:
+
+    1. Please ask the community if **`node.whiteIPs`** needs to be updated, added or deleted *(Must be set up  before starting the node)*.
+    2. Make sure the RPC switch is configured as **`rpc.http.enabled = true`** instead of **`rpc.enabled = true`**.
+    3. Set **`randomx.flags.fullmem = false`**.
 
   
 
 ### **5. Download the SNAPSHOT File**
 
 ```bash
-1. Create the /main/rocksdb/xdagdb directory under the run folder.
+1. Create the /mainnet/rocksdb/xdagdb directory under the run folder.
 
-2. SNAPSHOT download address: https://storage.xdagpool.com/.
+2. SNAPSHOT download address: https://storage.xdagpool.com/ (Or ask the community to get the latest SNAPSHOT).
 
 3. Unzip the compressed package to get a SNAPSHOT folder.
 
-4. Delete all files except SNAPSHOT files in the run/mainnet/rocksdb/xdagdb directory.
+4. Delete all files except SNAPSHOT files in the /run/mainnet/rocksdb/xdagdb directory.
 
-5. Copy the unzipped SNAPSHOT file to mainnet/rocksdb/xdagdb in the root directory, overwriting the existing SNAPSHOT folder.
+5. Copy the unzipped SNAPSHOT file to /mainnet/rocksdb/xdagdb in the root directory, overwriting the existing SNAPSHOT folder.
 ```
 
 
@@ -368,23 +410,21 @@ $ sh xdag.sh --version    // return: 0.8.0
 
 ### 8. Start XdagJ
 
-```shell
-###
-Notice:
-	1. If there is no wallet folder under the current mainnet directory, it will be created automatically when the node starts.
-	2. The node and pool wallet addresses must be different; otherwise, rewards will not be issued.
-###
-```
+**Note:**
+
+1. If there is no wallet folder under the current mainnet directory, it will be created automatically when the node starts.
+
+2. The node and pool wallet addresses must be different; otherwise, rewards will not be issued.
 
 ```shell
 # Run the following command to start the xdagj node.
 $ cd run
 $ sh xdag.sh --enablesnapshot true [Snapshot Height] [Timestamp]    // Check with the community for the correct command.
 
-# For example: "sh xdag.sh --enablesnapshot true 3140605 19a15630000" (Check with the community for the correct command).
+# For example: "$ sh xdag.sh --enablesnapshot true 3140605 19a15630000" (Check with the community for the correct command).
 ```
 
-**Notice:** If an exception occurs when starting the snapshot, delete the loaded data from **`t_transaction_history`** in MySQL. Ensure the table is empty before restarting. Also, delete all non-SNAPSHOT files in **`rocksdb/xdagdb`**.
+**Note:** If an exception occurs when starting the snapshot, delete the loaded data from **`t_transaction_history`** in MySQL. Ensure the table is empty before restarting. Also, delete all non-SNAPSHOT files in **`rocksdb/xdagdb`**.
 
 
 
@@ -416,9 +456,13 @@ $ sh xdag.sh --enablesnapshot true [Snapshot Height] [Timestamp]    // Check wit
 
     ![](assets/b5126fb3bf45adcedb4a3da11ff0e88.png)
 
+    
+
   - *This is an example of the output of the "stats" command right after the snapshot has been loaded:*
 
     ![](assets/cf92f999d00d0d750a0124ad094eb47.png)
+
+    
 
   - *Verify SNAPSHOT all balance:*
 
@@ -438,6 +482,8 @@ $ sh xdag.sh --enablesnapshot true [Snapshot Height] [Timestamp]    // Check wit
     		y = x - 466 * 64  =>  1246736960 = 1246766784 - 466 * 64
     ###
     ```
+    
+    
 
 - ***Check the node status by using the telnet:***
 
@@ -454,28 +500,30 @@ $ sh xdag.sh --enablesnapshot true [Snapshot Height] [Timestamp]    // Check wit
       ```shell
       Enter Admin password>[Your password]
       ```
+    
+      
 
   - *List all methods in telnet:*
-
+  
     ```shell
-    xdag> help
+  xdag> help
     ```
 
+    
+  
   - *Check the state of the node:*
 
     ```shell
-    xdag> state
+  xdag> state
     ```
 
-    **Notice:** If the returned result is **`Synchronized with the main network. Normal operation.`**, it indicates that synchronization is complete and block generation is functioning normally. At this point, your node has been successfully set up and synchronized with the mainnet.
+    **Note:** If the returned result is **`Synchronized with the main network. Normal operation.`**, it indicates that synchronization is complete and block generation is functioning normally. At this point, your node has been successfully set up and synchronized with the mainnet.
+  
+    
 
   - *View the statistics of the node:*
 
     ```shell
     xdag> stats
     ```
-
-    
-
   
-
