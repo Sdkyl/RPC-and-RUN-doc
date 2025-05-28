@@ -324,6 +324,7 @@ $ mvn clean package -Dmaven.test.skip=true
 
       - "node.whiteIPs": Please ask the community if **`node.whiteIPs`** needs to be updated, added or deleted *(Must be set up  before starting the node)*.
       - "node.generate.block.enable": 
+
           1. Set **`node.generate.block.enable = true`** for mining nodes.
           2. Set **`node.generate.block.enable = false`** for exchanges.
 
@@ -355,17 +356,22 @@ $ mvn clean package -Dmaven.test.skip=true
 
   - Modify xdag.sh:
 
-    1. Copy **`xdagj.sh`** to the run folder.
+    - Copy **`xdagj.sh`** to the run folder.
 
-    2. Modify **`XDAG_VERSION="${project.version}"`** to **`XDAG_VERSION="0.8.0"`**
+    - Modify **`XDAG_VERSION="${project.version}"`** to **`XDAG_VERSION="0.8.0"`**
 
       
 
   - Modify xdag-mainnet.conf:
 
-    1. Please ask the community if **`node.whiteIPs`** needs to be updated, added or deleted *(Must be set up  before starting the node)*.
-    2. Make sure the RPC switch is configured as **`rpc.http.enabled = true`** instead of **`rpc.enabled = true`**.
-    3. Set **`randomx.flags.fullmem = false`**.
+    - Please ask the community if **`node.whiteIPs`** needs to be updated, added or deleted *(Must be set up  before starting the node)*.
+    - "node.generate.block.enable": 
+      1. Set **`node.generate.block.enable = true`** for mining nodes.
+      2. Set **`node.generate.block.enable = false`** for exchanges.
+    - "node.reject.transaction.address": Please ask the community to modify the content of **`node.reject.transaction.address`**.
+    - "fund.address": Set **`fund.address = "PKcBtHWDSnAWfZntqWPBLedqBShuKSTzS"`** *(Without this address, miner rewards cannot be distributed)*.
+    - Make sure the RPC switch is configured as **`rpc.http.enabled = true`** instead of **`rpc.enabled = true`**.
+    - Set **`randomx.flags.fullmem = false`**.
 
   
 
